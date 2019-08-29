@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       else
         forget @user
       end
-      	redirect_to @user
+      redirect_back_or @user
     else
       respond_to do |format|
         format.js { flash.now[:danger] = "Invalid email/password combination" }
