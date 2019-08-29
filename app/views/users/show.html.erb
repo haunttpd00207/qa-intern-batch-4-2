@@ -1,0 +1,18 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <div class="picture-user">
+         <% if @user.picture? %>
+           <%= image_tag @user.picture.url %>
+         <% else %>
+           <%= link_to image_tag("user.png", alt: "User logo"), t(".url_image") %>
+         <% end %>
+		    </div>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
+
