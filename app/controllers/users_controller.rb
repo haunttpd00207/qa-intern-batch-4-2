@@ -8,8 +8,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new user_params
     if @user.save
+      log_in @user
       redirect_to @user, success: "Sign up successfully!"
     else
       respond_to do |format|
