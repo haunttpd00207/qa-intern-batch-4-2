@@ -6,9 +6,10 @@
         <%= link_to "Home", root_path %>
       </li>
       <li class="breadcrumb-item active">
-        Question
+        All Questions
       </li>
     </ol>
   </nav>
   <%= render @questions %>
+  <%= will_paginate @questions %>
 </div>
