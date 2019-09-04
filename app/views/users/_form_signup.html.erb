@@ -1,4 +1,4 @@
-<%= form_for(@user = User.new, url: signup_path, remote: true) do |f| %>
+<%= form_for @user = User.new, url: signup_path, remote: true do |f| %>
   <div id="error_messages"></div>
   <%= f.label :name %>
   <%= f.text_field :name, class: "form-control" %>
