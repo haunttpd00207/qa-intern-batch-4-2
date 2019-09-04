@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :questions, dependent: :destroy
 
+  has_many :questions, dependent: :destroy
+
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 },
             format: { with: VALID_EMAIL_REGEX },

@@ -5,18 +5,38 @@
   <div class="widget widget-menus">
     <div id="menu-left-menu-container">
       <ul id="menu-left-menu-1">
-        <li><%= link_to "#" do %>
-          <i class="fa fa-question-circle"></i> Questions
-        <% end %></li>
-        <li><%= link_to "#" do %>
-          <i class="fa fa-tags"></i> Tags
-        <% end %></li>
-        <li><%= link_to "#" do %>
-          <i class="fa fa-th-list"></i> Categories
-        <% end %></li>
-        <li><%= link_to users_path do %>
-          <i class="fa fa-users"></i> Users
-        <% end %></li>
+        <% if logged_in? %>
+          <li><%= link_to questions_path do %>
+            <i class="fa fa-question-circle"></i> Questions
+          <% end %></li>
+
+          <li><%= link_to "#" do %>
+            <i class="fa fa-tags"></i> Tags
+          <% end %></li>
+
+          <li><%= link_to "#" do %>
+            <i class="fa fa-th-list"></i> Categories
+          <% end %></li>
+
+          <li><%= link_to "#" do %>
+            <i class="fa fa-users"></i> Users
+          <% end %></li>
+
+        <% else %>
+
+          <li><%= link_to "#" do %>
+            <i class="fa fa-tags"></i> Tags
+          <% end %></li>
+
+          <li><%= link_to "#" do %>
+            <i class="fa fa-th-list"></i> Categories
+          <% end %></li>
+
+          <li><%= link_to "#" do %>
+            <i class="fa fa-users"></i> Users
+          <% end %></li>
+
+        <% end %>
       </ul>
       <div class="copyright">
         ©2019 <br>
