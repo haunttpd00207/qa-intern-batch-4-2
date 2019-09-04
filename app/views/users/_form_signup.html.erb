@@ -1,6 +1,5 @@
-<% provide(:title, "Sign in") %>
-<%= form_for :user do |f| %>
-
+<%= form_for(@user = User.new, url: signup_path, remote: true) do |f| %>
+  <div id="error_messages"></div>
   <%= f.label :name %>
   <%= f.text_field :name, class: "form-control" %>
 
@@ -8,10 +7,10 @@
   <%= f.email_field :email, class: "form-control" %>
 
   <%= f.label :Phone %>
-  <%= f.email_field :phone, class: "form-control" %>
+  <%= f.text_field :phone, class: "form-control" %>
 
   <%= f.label :Address %>
-  <%= f.email_field :address, class: "form-control" %>
+  <%= f.text_field :address, class: "form-control" %>
 
   <%= f.label :password %>
   <%= f.password_field :password, class: "form-control" %>
@@ -21,5 +20,5 @@
 
   <%= f.file_field :picture %>
 
-  <%= f.submit "Sign up", class: "btn btn-primary", id: "ajjax" %>
+  <%= f.submit "Sign up", class: "btn btn-primary" %>
 <% end %>

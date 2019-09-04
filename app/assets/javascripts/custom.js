@@ -15,11 +15,4 @@ $( document ).on('turbolinks:load', function() {
     $('body').css('overflow-y', 'hidden')
     $('.signin-form').css('overflow-y', 'auto');
   });
-
-  $("#ajjax").click(function() {
-    $('.modal').animate({
-            scrollTop: 0
-        }, 'slow');
-    return false
-  });
 });
