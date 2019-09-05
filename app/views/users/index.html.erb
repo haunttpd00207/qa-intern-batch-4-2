@@ -1,0 +1,22 @@
+<% provide(:title, 'All users') %>
+<div class="col md-8">
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to "Home", root_path %>
+      </li>
+      <li class="breadcrumb-item active">
+        Users
+      </li>
+    </ol>
+  </nav>
+  <div class="row select-category">
+    <div class="col-md-6 col-xs-6 current-category">
+      <span>Users</span>
+    </div>
+  </div>
+  <ul id="main_users_list" class="row">
+    <%= render @users %>
+  </ul>
+</div>
+

@@ -1,8 +1,57 @@
+<% provide :title, @user.name %>
 <aside class="col-md-8">
-  <section class="user_info">
-    <div class="picture-user">
-      <%= image_tag @user.picture.url %>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to "Home", root_path %>
+      </li>
+      <li class="breadcrumb-item">
+        <%= link_to "Users", users_path %>
+      </li>
+      <li class="breadcrumb-item active">
+        Profile
+      </li>
+    </ol>
+  </nav>
+  <div class="row select-category">
+    <div class="col-md-6 col-xs-6 current-category">
+      <span><%= @user.name %> Profile</span>
     </div>
-    <%= @user.name %>
-  </section>
+  </div>
+  <div class="row user-statistic highlight">
+    <div class="col-md-5 col-xs-12 user-info">
+      <span class="picture-user">
+        <%= image_tag @user.picture.url %>
+      </span>
+      <ul>
+        <li class="name"><%= @user.name %></li>
+        <span title="1529" class="user-badge" style="background-color:#780978;">
+          Member
+        </span>
+        <li class="item"><i class="fa fa-envelope"></i> <%= @user.email %></li>
+        <li class="item"><i class="fa fa-phone"></i> <%= @user.phone %></li>
+        <li class="item"><i class="fa fa-map-marker"></i> <%= @user.address %></li>
+      </ul>
+    </div>
+    <div class="col-md-7 col-xs-12 user-post-count">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6 statistics">
+          <div class="pull-top question-cat">
+            <li class="widget widget-statistic">
+              <ul class="widget wiget-count">
+                <li class="question-count">
+                  <p>Questions</p>
+                  <span>23</span>
+                </li>
+                <li class="member-count">
+                  <p>Answers</p>
+                  <span>12</span>
+                </li>
+              </ul>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </aside>
