@@ -17,3 +17,5 @@
 //= require popper
 //= require bootstrap
 //= require custom
+//= require select2
+//= require ckeditor/init
