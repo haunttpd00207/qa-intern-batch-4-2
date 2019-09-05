@@ -18,3 +18,5 @@
 //= require bootstrap
 //= require toastr
 //= require custom
+//= require select2
+//= require ckeditor/config

@@ -1,0 +1,21 @@
+<%= form_for (@question) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+
+  <div class="form-group">
+    <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.select :category_id, select_category, { include_blank: "Category" }, class: "form-control select-category" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.cktext_area :content, rows: 10 , class: "ckeditor form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.select :tag_ids, select_tag, {}, multiple: true, class: "form-control tag-multiple" %>
+  </div>
+
+  <%= f.submit btn_text, class: "btn btn-primary" %>
+<% end %>
