@@ -15,4 +15,10 @@ $( document ).on('turbolinks:load', function() {
     $('body').css('overflow-y', 'hidden')
     $('.signin-form').css('overflow-y', 'auto');
   });
+
+  $(".btn-password-reset-form").click(function() {
+    $(".signin-form").modal('hide');
+    $('body').css('overflow-y', 'hidden')
+    $('.signup-form').css('overflow-y', 'auto');
+  });
 });

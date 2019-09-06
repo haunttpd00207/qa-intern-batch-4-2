@@ -21,9 +21,11 @@
             </div>
           </li>
           <%= link_to "Blog", "#", class: "nav-link" %>
-          <%= link_to "Term", "#", class: "nav-link" %>
           <%= link_to "Contact", "#", class: "nav-link" %>
           <% if logged_in? %>
+            <div class="picture-user">
+              <%= image_tag current_user.picture.url %>
+            </div>
             <li class="nav-item dropdown">
               <%= link_to current_user.name, "#", class: "nav-link dropdown-toggle",
                 data: {toggle: "dropdown"} %>
@@ -32,7 +34,7 @@
                 <div class="dropdown-divider"></div>
                 <%= link_to "Setting", edit_user_path(current_user), class: "dropdown-item" %>
                 <div class="dropdown-divider"></div>
-                <%= link_to "Logout", logout_path , method: :delete, class: "dropdown-item" %>
+                <%= link_to "Logout", logout_path, method: :delete, class: "dropdown-item" %>
               </div>
             </li>
           <% else %>
@@ -40,20 +42,23 @@
               <%= link_to "Login or Register", "#", class: "nav-link",
                 data:{toggle: "modal", target: "#signin"} %>
             </li>
-              <!-- Modal Login -->
+            <!-- Modal Login -->
             <div class="modal fade signin-form" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Sign in</h5>
-                    <%= button_tag :class => "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
+                    <%= button_tag class: "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
                       <span aria-hidden="true">&times;</span>
                     <% end %>
                   </div>
-                    <div class="modal-body">
-                      <%= render "sessions/form_signin" %>
-                    </div>
+                  <div class="modal-body">
+                    <%= render "sessions/form_signin" %>
+                  </div>
                   <div class="modal-footer">
+                    <%= link_to "Forgot password", new_password_resets_path, class: "btn-password-reset-form",
+                      data:{toggle: "modal", target: "#passwordreset"} %>
+                    |
                     <%= link_to "Sign up here", "#", class: "btn-signup-form",
                       data:{toggle: "modal", target: "#signup"} %><span> or sign in with</span>
                   </div>
@@ -66,16 +71,32 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Sign up</h5>
-                    <%= button_tag :class => "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
+                    <%= button_tag class: "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
                       <span aria-hidden="true">&times;</span>
                     <% end %>
                   </div>
                   <div class="modal-body">
                     <%= render "users/form_signup" %>
-                    <div class="modal-footer">
-                      <%= link_to "Sign in", "#", class: "btn-signin-form",
-                        data:{toggle: "modal", target: "#signin"} %>
-                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <%= link_to "Sign in", "#", class: "btn-signin-form",
+                    data:{toggle: "modal", target: "#signin"} %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal PasswordReset -->
+            <div class="modal fade pasword-reset-form" id="passwordreset" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Reset Password</h5>
+                    <%= button_tag class: "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
+                      <span aria-hidden="true">&times;</span>
+                    <% end %>
+                  </div>
+                  <div class="modal-body">
+                    <%= render "password_resets/form_password_reset" %>
                   </div>
                 </div>
               </div>
