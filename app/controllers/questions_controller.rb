@@ -1,12 +1,13 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show, :edit, :update, :destroy]
+  before_action :load_question, only: [:show, :edit, :update, :destroy, :upvote, :unvote]
+  before_action :load_vote, only: [:unvote]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :logged_in_user
+  before_action :logged_in_user, except: [:show, :search]
 
   def show; end
 
   def index
-    @questions = current_user.questions.newest
+    @questions = current_user.questions.newest.paginate page: params[:page], per_page: 5
   end
 
   def new
@@ -25,7 +26,7 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def update
-    if @question.update_attributes(question_params)
+    if @question.update question_params
       redirect_to @question, success: "Updating are successful!"
     else
       render :edit
@@ -35,6 +36,39 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     redirect_to questions_path, success: "Deleting are successful!"
+  end
+
+  def upvote
+    if already_voted?
+      flash[:info] = "You can't vote more than once"
+    else
+      @question.votes.create user_id: current_user.id
+      flash[:info] = "Thank for voting"
+    end
+      redirect_to question_path @question
+  end
+
+  def unvote
+    if !(already_voted?)
+      flash[:info] = "Can not unvoted the thing you did not vote"
+    else
+      @vote.destroy
+      flash[:info] = "Thank for unvoting"
+    end
+      redirect_to question_path @question
+  end
+
+  def search
+    if params[:search].blank?
+      redirect_to root_path, info: "Please typing any thing on search bar"
+    else
+      @results = Question.left_joins(:user, :category, :question_tags, :tags).search params[:search]
+    end
+  end
+
+  def autofilltext
+    @all = Question.search(params[:search]).map(&:title)
+    render json: @all.uniq.sort
   end
 
   private
@@ -49,8 +83,18 @@ class QuestionsController < ApplicationController
     redirect_to root_path, danger: "Question Errors"
   end
 
+  def load_vote
+    @vote = @question.votes.find_by user_id: current_user.id
+    return if @vote
+    redirect_to root_path, danger: "Vote Errors"
+  end
+
   def correct_user
-    @question = current_user.questions.find_by(id: params[:id])
-    redirect_to root_path, danger: "No Permission" if @question.nil?
+    return if current_user?(@question.user)
+    redirect_to root_path, danger: "No Permission"
+  end
+
+  def already_voted?
+    @question.votes.where(user_id: current_user.id).exists?
   end
 end

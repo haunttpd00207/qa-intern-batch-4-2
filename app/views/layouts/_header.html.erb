@@ -4,8 +4,8 @@
       <%= link_to "QAENGINE", root_path, class: "col-md-3 navbar-brand" %>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <div class="form-inline">
-          <%= form_tag({}, {method: :get}) do %>
-            <%= text_field_tag :search, "", class: "form-control mr-sm-2" %>
+          <%= form_tag(search_page_path, method: :get) do %>
+            <%= text_field_tag :search, nil, placeholder: "Search", class: "form-control mr-sm-2" %>
             <%= button_tag "Search", class:  "btn btn-primary m-sm-3 my-sm-0" %>
           <% end %>
         </div>

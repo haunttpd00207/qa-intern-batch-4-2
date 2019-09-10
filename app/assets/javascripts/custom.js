@@ -29,4 +29,15 @@ $( document ).on('turbolinks:load', function() {
   $('.select-category').select2({
     theme: 'bootstrap',
   });
+
+  $("#search").autocomplete({
+    maxShowItems: 5,
+    minLength: 0,
+    source: "/autocomplete",
+
+    select: function(event, ui){
+      $("#search").val(ui.item.value);
+      $(this).closest('form').trigger('submit');
+    }
+  });
 });

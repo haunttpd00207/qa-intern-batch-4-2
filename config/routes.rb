@@ -7,7 +7,14 @@ Rails.application.routes.draw do
   get  "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  get "/search", to: "questions#search", as: "search_page"
+  get "/autocomplete", to: "questions#autofilltext"
   resources :users
   resource :password_resets, only: [:new, :create, :edit, :update]
-  resources :questions
+  resources :questions do
+    member do
+      post "upvote"
+      post "unvote"
+    end
+  end
 end

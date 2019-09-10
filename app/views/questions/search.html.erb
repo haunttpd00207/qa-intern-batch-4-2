@@ -1,0 +1,19 @@
+<div class="col md-8">
+  <% if !@results.blank? %>
+    <div class="dropdown-divider"></div>
+    <h3>Search Result :</h3>
+    <div class="dropdown-divider"></div>
+    <%= render @results %>
+  <% else %>
+   <div class="col md-8">
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active">
+       <i>Can not find your question: </i>
+       <b><%= params[:search] %></b>
+      </li>
+    </ol>
+  </nav>
+</div>
+  <% end %>
+</div>
