@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   root "static_pages#home"
 
   get "/signup", to: "users#new"
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   resources :users
   resource :password_resets, only: [:new, :create, :edit, :update]
+  resources :questions
 end

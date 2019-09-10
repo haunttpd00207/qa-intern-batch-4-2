@@ -50,6 +50,6 @@ class UsersController < ApplicationController
 
   def correct_user
     return if current_user?(@user)
-    redirect_to root_path, danger: "Do not edit other users'"
+    redirect_to root_path, danger: "Do not edit other users"
   end
 end

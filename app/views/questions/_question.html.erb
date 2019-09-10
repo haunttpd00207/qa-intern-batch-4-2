@@ -1,0 +1,34 @@
+<div class="row questions">
+  <div class="col-md-8 questions">
+    <blockquote class="blockquote">
+      <p class="question">
+        <%= question.title %>
+      </p>
+      <p class="anwser">
+        <%= raw question.content %>
+      </p>
+      <div class="tags">
+        <%= (render partial: "shared/tags_list", collection: question.tags,
+        as: :tag) unless question.tags.blank? %>
+      </div>
+    </blockquote>
+    <div class="bottom-questions">
+      <%= link_to question.user.name, question.user %>
+      <span class="time"> | Asked on: <%= question.created_at %> </span>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-4 q-right-content">
+    <ul class="question-statistic">
+      <li class="active">
+        <span itemprop="answerCount" class="question-answers">
+          3
+        </span>answers
+      </li>
+      <li>
+        <span itemprop="upvoteCount" class="question-votes">
+          0
+        </span> votes
+      </li>
+    </ul>
+  </div>
+</div>

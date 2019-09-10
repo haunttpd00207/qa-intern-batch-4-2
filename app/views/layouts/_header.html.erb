@@ -6,7 +6,7 @@
         <div class="form-inline">
           <%= form_tag({}, {method: :get}) do %>
             <%= text_field_tag :search, "", class: "form-control mr-sm-2" %>
-            <%= button_tag "Search", :class => "btn btn-primary m-sm-3 my-sm-0" %>
+            <%= button_tag "Search", class:  "btn btn-primary m-sm-3 my-sm-0" %>
           <% end %>
         </div>
         <ul class="navbar-nav ml-md-auto">
@@ -48,7 +48,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Sign in</h5>
-                    <%= button_tag class: "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
+                    <%= button_tag class: "close", "data-dismiss": "modal", "aria-label": "Close" do %>
                       <span aria-hidden="true">&times;</span>
                     <% end %>
                   </div>
@@ -71,7 +71,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Sign up</h5>
-                    <%= button_tag class: "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
+                    <%= button_tag class: "close", "data-dismiss": "modal", "aria-label": "Close" do %>
                       <span aria-hidden="true">&times;</span>
                     <% end %>
                   </div>
@@ -91,7 +91,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Reset Password</h5>
-                    <%= button_tag class: "close", "data-dismiss" => "modal", "aria-label"=>"Close" do %>
+                    <%= button_tag class: "close", "data-dismiss": "modal", "aria-label": "Close" do %>
                       <span aria-hidden="true">&times;</span>
                     <% end %>
                   </div>
