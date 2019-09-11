@@ -242,13 +242,23 @@ label.checkbox.inline {
     border-radius: 30px;
   }
 }
-.picture-user-answer {
-  float: left;
-  margin: 0px 0px 0px 35px;
-  img {
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
+.picture-user{
+  &.answer {
+    float: left;
+    margin: 0px 0px 0px 35px;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+    }
+  }
+  &.comment{
+      margin: 0 -10px;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+    }
   }
 }
 input.btn.btn-primary {
@@ -370,16 +380,28 @@ li.vote-count {
   color: #272626;
 }
 i.cr-answer {
-  margin: 8px;
+  margin: 5px;
   font-size: 13px;
+  color: #6c757d;
 }
 .row.answers {
   border-bottom: 1px solid #ccc;
-  padding: 15px 0 0px 0px;
+  padding: 10px 0 10px 0px;
 }
+.col-md-10 h6 a {
+  font-weight: bold;
+  color: #385898;
+  float: left;
+  font-size: 14px;
+  margin: 2px 5px;
+}
+
 .col-md-11 h6 a {
   font-weight: bold;
   color: #385898;
+  float: left;
+  font-size: 14px;
+  margin: 0 5px;
 }
 a.nav-link-answers{
   float: right;
@@ -411,4 +433,36 @@ a.nav-link-question.active {
 .nav-link-question:hover{
   border: none;
   border-bottom: 4px solid #f39c12 !important;
+}
+.links.btn-group-action {
+  float: right;
+  a {
+    color: #272626;
+  }
+}
+.answer-content span p {
+  margin: 10px 0;
+  font-size: 14px;
+  width: 100%;
+}
+.comment-content span p {
+  margin: 0 5px;
+  font-size: 14px;
+  width: 100%;
+}
+.col-md-11.comment h6 {
+    margin: 0px 0px 0 -35px;
+}
+.pagination{
+  padding-left: none !important;
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+}
+.comment-content{
+  float: left;
+}
+.time-comment {
+    float: left;
+    width: 90%;
 }

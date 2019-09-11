@@ -1,0 +1,1 @@
+$("#comment_<%= @comment.id %> .comment-content").html('<%= j render "comments/form", comment: @comment, answer_id: @comment.answer_id, btn_text: "Update Comment", action: "cmt_#{@comment.id}" %>');

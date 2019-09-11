@@ -1,5 +1,5 @@
 <% if @answer.errors.any? %>
   alert("No data");
 <% else %>
-  $("#answer_<%= @answer.id %>").replaceWith('<%= j render @answer %>');
+  $("#answer_<%= @answer.id %>").replaceWith('<%= j render @answer, comment: @comment, comments: @comments %>');
 <% end %>

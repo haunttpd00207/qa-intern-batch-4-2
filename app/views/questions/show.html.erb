@@ -31,16 +31,24 @@
         </div>
         <%= link_to @question.user.name, @question.user %>
         <span class="time"> | Asked on: <%= @question.created_at %>
-          <%= link_to "Your Answer", "#", class: "nav-link-answers",
-            data: { toggle: "collapse", target: "#comment-form" } %>
+          <%= link_to "Comments (#{count_comment @question})", "#", class: "nav-link-answers",
+            data: { toggle: "collapse", target: "#comment-form" }, id: "total_comment" %>
         </span>
       </div>
     </div>
   </div>
+  <div id="comment-form" class="collapse">
+    <%= render "comments/form", comment: @comment, answer_id: nil, btn_text: "Add Comments",
+      action: "create" %>
+  </div>
+  <div id="list-comment-question">
+    <%= render select_comments(@comments, nil) %>
+  </div>
   <div id="answer-list">
-    <%= render "answer_paginate", answers: @answers %>
+    <%= render "answer_paginate", answers: @answers, comment: @comment, comments: @comments %>
   </div>
   <div id="answer-form">
-    <%= render "answers/form", question: @question, answer: @answer, btn_text: "Post Answer", action: "create" %>
+    <%= render "answers/form", question: @question, answer: @answer, btn_text: "Add Answers",
+      action: "create" %>
   </div>
 </div>

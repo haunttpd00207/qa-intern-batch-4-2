@@ -1,12 +1,15 @@
 class AnswersController < ApplicationController
   before_action :logged_in_user
-  before_action :load_question, only: [:index, :create]
+  before_action :load_question, expect: [:show, :new]
+  before_action :load_comment, only: [:create, :update, :destroy]
   before_action :load_answer, only: [:edit, :update, :destroy]
 
   def index
     rows = @question.answers.newest.includes(:user)
     @answers = Kaminari.paginate_array(rows).page(params[:page]).per(5)
     @answer = @question.answers.build
+    @comments = @question.comments.newest.includes(:user)
+    @comment = @question.comments.build
   end
 
   def create
@@ -54,5 +57,10 @@ class AnswersController < ApplicationController
     @question = Question.find_by id: params[:question_id]
     return if @question
     redirect_to root_path, danger: "Question not found"
+  end
+
+  def load_comment
+    @comment = @question.comments.build
+    @comments = @question.comments.newest.includes(:user)
   end
 end

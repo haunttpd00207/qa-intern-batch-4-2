@@ -1,0 +1,27 @@
+<div id="comment_<%= comment.id %>">
+  <div class="row answers">
+    <div class="col-md-1 comment">
+      <div class="picture-user comment">
+        <%= image_tag comment.user.picture.url %>
+      </div>
+    </div>
+    <div class="col-md-11 comment">
+      <h6><%= link_to comment.user.name, comment.user %>
+        <div class="comment-content"><span> <%= raw comment.content %></span></div>
+        <div class="time-comment"><i class="cr-answer">
+        comment <%= time_ago_in_words(comment.created_at) %> ago #<%= comment.id %></i></div>
+        <% if current_user?(comment.user) %>
+          <div class="links btn-group-action">
+            <%= link_to question_comment_path(comment.question, comment), method:
+              :delete, remote: true do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+            <%= link_to edit_question_comment_path(comment.question, comment), remote: true do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </h6>
+    </div>
+  </div>
+</div>

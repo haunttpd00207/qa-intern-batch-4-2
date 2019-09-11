@@ -1,0 +1,11 @@
+<% if @comment.errors.any? %>
+  alert('Answer content invalid.');
+<% elsif @comment.answer_id %>
+  $('#list-comment-answer-<%= @comment.answer_id %>').prepend("<%= j render @comment %>");
+  var name = `cmt_<%= @comment.answer_id %>`;
+  eval("CKEDITOR.instances." + name + ".setData('')");
+<% else %>
+  $('#total_comment').text('<%= "Comments (#{count_comment @question})" %>');
+  $('#list-comment-question').prepend("<%= j render @comment %>");
+  CKEDITOR.instances.cmt_create.setData('');
+<% end %>

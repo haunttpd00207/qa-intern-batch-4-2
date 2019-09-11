@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
     rows = @question.answers.newest.includes(:user)
     @answers = Kaminari.paginate_array(rows).page(params[:page]).per(5)
     @answer = @question.answers.build
+    @comments = @question.comments.newest.includes(:user)
+    @comment = @question.comments.build
   end
 
   def new

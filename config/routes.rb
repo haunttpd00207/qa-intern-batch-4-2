@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resource :password_resets, only: [:new, :create, :edit, :update]
   resources :questions do
     resources :answers
+    resources :comments
   end
 end
