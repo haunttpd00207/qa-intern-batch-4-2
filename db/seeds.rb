@@ -15,7 +15,23 @@ User.create!(name:  "Admin",
              address: "K55/07 Ngu Hanh Son - Da Nang",
              picture: nil,
              password:              "111111",
-             password_confirmation: "111111")
+             password_confirmation: "111111",)
+
+10.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  phone = "0935535325"
+  address = Faker::Address.full_address
+  picture = nil
+  password = "password"
+  User.create!(name:  name,
+              email: email,
+              phone: "0376888998",
+              address: "K55/07 Ngu Hanh Son - Da Nang",
+              picture: nil,
+              password:              "111111",
+              password_confirmation: "111111",)
+end
 
 #questions fake-data
 

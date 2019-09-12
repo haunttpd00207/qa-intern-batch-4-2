@@ -1,0 +1,42 @@
+<div id="answer_<%= answer.id %>">
+  <div class="row answers">
+
+    <div class="col-md-1 answer">
+      <div class="picture-user answer">
+        <%= image_tag answer.user.picture.url %>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <h6><%= link_to answer.user.name, answer.user %><i class="cr-answer">repply on question of "<%= @question.user.name %>" <%= time_ago_in_words(answer.created_at) %> ago </i> &uarr;
+        <% if current_user?(answer.user) %>
+          <div class="links btn-group-action">
+            <%= link_to question_answer_path(answer.question, answer), method:
+              :delete, remote: true do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+            <%= link_to edit_question_answer_path(answer.question, answer), remote: true do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to "#", class: "nav-link-answers", data: { toggle: "collapse", target: "#comment-form-#{answer.id}" } do %>
+              <i class="fa fa-comment"></i>
+            <% end %>
+          </div>
+          <% else %>
+          <div class="links btn-group-action">
+            <%= link_to "#", class: "nav-link-answers", data: { toggle: "collapse", target: "#comment-form-#{answer.id}" } do %>
+              <i class="fa fa-comment"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <div id="comment-form-<%= answer.id %>" class="collapse" data-parent="#answers">
+          <%= render "comments/form", comment: comment, answer_id: answer.id, btn_text: "Add Comments",
+            action: answer.id %>
+        </div>
+        <div class="answer-content"><span><%= raw answer.content %></span></div>
+        <div id="list-comment-answer-<%= answer.id %>">
+          <%= render select_comments(comments, answer.id) %>
+        </div>
+      </h6>
+    </div>
+  </div>
+</div>

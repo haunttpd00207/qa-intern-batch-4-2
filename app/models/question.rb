@@ -3,14 +3,14 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :question_tags, dependent: :destroy
   has_many :tags, through: :question_tags
+  has_many :answers, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   validates :title, presence: true
   validates :content, presence: true
 
   scope :newest, -> { order created_at: :DESC }
-
-  #test vote for question: change to answer later
-  has_many :votes, dependent: :destroy
 
   def self.search(search)
     left_joins(:user, :category, :question_tags, :tags).

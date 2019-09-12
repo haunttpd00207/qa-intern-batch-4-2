@@ -1,13 +1,19 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show, :edit, :update, :destroy, :upvote, :unvote]
+  before_action :load_question, except: [:index, :new, :create, :autofilltext]
   before_action :load_vote, only: [:unvote]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :logged_in_user, except: [:show, :search]
-
-  def show; end
+  before_action :logged_in_user, except: [:index, :show, :autofilltext]
 
   def index
     @questions = current_user.questions.newest.paginate page: params[:page], per_page: 5
+  end
+
+  def show
+    rows = @question.answers.newest.includes(:user)
+    @answers = Kaminari.paginate_array(rows).page(params[:page]).per(5)
+    @answer = @question.answers.build
+    @comments = @question.comments.newest.includes(:user)
+    @comment = @question.comments.build
   end
 
   def new

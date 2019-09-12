@@ -16,5 +16,7 @@ Rails.application.routes.draw do
       post "upvote"
       post "unvote"
     end
+    resources :answers
+    resources :comments
   end
 end

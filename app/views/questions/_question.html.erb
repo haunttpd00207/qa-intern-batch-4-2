@@ -2,7 +2,7 @@
   <div class="col-md-8 questions">
     <blockquote class="blockquote">
       <p class="question">
-        <%= question.title %>
+        <%= link_to question.title, question %>
       </p>
       <p class="anwser">
         <%= raw question.content %>
@@ -13,6 +13,9 @@
       </div>
     </blockquote>
     <div class="bottom-questions">
+      <div class="picture-user-question">
+        <%= image_tag question.user.picture.url %>
+      </div>
       <%= link_to question.user.name, question.user %>
       <span class="time"> | Asked on: <%= question.created_at %> </span>
     </div>
@@ -21,8 +24,8 @@
     <ul class="question-statistic">
       <li class="active">
         <span itemprop="answerCount" class="question-answers">
-          3
-        </span> answers
+          <%= question.answers.count %>
+        </span>answers
       </li>
       <li>
         <span itemprop="upvoteCount" class="question-votes">
@@ -31,12 +34,10 @@
       </li>
     </ul>
   </div>
-  <% if current_user?(question.user) %>
-    <did>
+  <div>
+    <% if current_user?(question.user) %>
       <span class="badge badge-primary-questions"><%= link_to "Edit", edit_question_path(question) %></span>
-      <span class="badge badge-primary-questions"><%= link_to "Delete", question_path(question), method: :delete, data: { confirm: 'Are you sure?' } %></span>
-    </did>
-  <% end %>
-    <span class="badge badge-primary-questions"><%= button_to "Vote", upvote_question_path(question) %></span>
-    <span class="badge badge-primary-questions"><%= button_to "Unvote", unvote_question_path(question) %></span>
+      <span class="badge badge-primary-questions"><%= link_to "Delete", question_path(question), method: :delete %></span>
+    <% end %>
+  </div>
 </div>

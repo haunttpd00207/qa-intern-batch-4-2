@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    @questions = Question.newest.paginate page: params[:page],
-      per_page: 5
+    @questions = Question.page(params[:page]).per(5).newest
   end
 end

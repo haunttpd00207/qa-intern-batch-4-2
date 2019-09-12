@@ -1,0 +1,5 @@
+<%= form_for [comment.question, comment], remote: true do |f| %>
+  <%= f.hidden_field :answer_id, value: answer_id %>
+  <%= f.cktext_area :content, rows: 3 , class: "ckeditor form-control", id: "cmt_#{action}" %>
+  <%= f.submit btn_text, class: "btn btn-primary" %>
+<% end %>

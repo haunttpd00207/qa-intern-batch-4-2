@@ -1,0 +1,4 @@
+<div id="answers" class="accordion">
+  <%= render answers, comment: comment, comments: comments %>
+</div>
+<%= paginate answers, remote: true, theme: 'twitter-bootstrap-4', class: "paginate" %>
