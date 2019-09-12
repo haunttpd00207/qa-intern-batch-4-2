@@ -6,18 +6,13 @@
         <%= link_to "Home", root_path %>
       </li>
       <li class="breadcrumb-item">
-        <%= link_to "Users", users_path %>
+        <%= link_to "All Users", users_path %>
       </li>
       <li class="breadcrumb-item active">
         Profile
       </li>
     </ol>
   </nav>
-  <div class="row select-category">
-    <div class="col-md-6 col-xs-6 current-category">
-      <span><%= @user.name %> Profile</span>
-    </div>
-  </div>
   <div class="row user-statistic highlight">
     <div class="col-md-5 col-xs-12 user-info">
       <span class="picture-user">

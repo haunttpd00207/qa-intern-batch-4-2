@@ -22,7 +22,7 @@
       <li class="active">
         <span itemprop="answerCount" class="question-answers">
           3
-        </span>answers
+        </span> answers
       </li>
       <li>
         <span itemprop="upvoteCount" class="question-votes">
@@ -31,4 +31,10 @@
       </li>
     </ul>
   </div>
+  <did>
+    <% if current_user?(question.user) %>
+      <span class="badge badge-primary-questions"><%= link_to "Edit", edit_question_path(question) %></span>
+      <span class="badge badge-primary-questions"><%= link_to "Delete", question_path(question), method: :delete %></span>
+    <% end %>
+  </did>
 </div>
