@@ -6,6 +6,25 @@
         <%= image_tag answer.user.picture.url %>
       </div>
     </div>
+    <div class="col-md-1 votes-answer">
+      <ul>
+        <li title="" data-original-title="This is useful.">
+          <%= link_to vote_path(answer), remote: true, method: :post, class: "action vote vote-up img-circle" do %>
+            <i class="fa fa-chevron-up"></i>
+          <% end %>
+        </li>
+        <li class="vote-count">
+          <span itemprop="upvoteCount" class="vote-count"><%= pluralize(answer.votes.count, "") %></span>
+        </li>
+        <li title="" data-original-title="This is not useful">
+          <%= link_to unvote_path(answer), remote: true, method: :delete, class: "action vote vote-down img-circle" do %>
+            <i class="fa fa-chevron-down"></i>
+          <% end %>
+        </li>
+        <li class="single-question-pump" data-original-title="" title="">
+        </li>
+      </ul>
+    </div>
     <div class="col-md-10">
       <h6><%= link_to answer.user.name, answer.user %><i class="cr-answer">repply on question of "<%= @question.user.name %>" <%= time_ago_in_words(answer.created_at) %> ago </i> &uarr;
         <% if current_user?(answer.user) %>

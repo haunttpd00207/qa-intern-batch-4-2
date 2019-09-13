@@ -9,13 +9,12 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/search", to: "questions#search", as: "search_page"
   get "/autocomplete", to: "questions#autofilltext"
+  post "/vote/:id", to: "answers#vote", as: "vote"
+  delete "/unvote/:id", to: "answers#unvote", as: "unvote"
+
   resources :users
   resource :password_resets, only: [:new, :create, :edit, :update]
   resources :questions do
-    member do
-      post "upvote"
-      post "unvote"
-    end
     resources :answers
     resources :comments
   end
